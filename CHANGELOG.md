@@ -61,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial release
-- Basic component database with hardcoded H-5 components
+- Basic component database with hardcoded example components
 - Connection tracking with pin-to-pin links
 - Union-find algorithm for net building
 - CSV netlist export

@@ -254,7 +254,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Author
 
-R. Andrew Ballard - 2026
+R. Andrew Ballard - [Blue Sky Fusion, Inc.](https://blueskyfusion.com) - 2026
 
 ## Changelog
 
