@@ -1132,14 +1132,14 @@ def main():
                 # Alias for del <pin>
                 proj.delete_pin_connections(parts[1])
 
-            elif action == "find" and len(parts) >= 2:
+            elif action in ["find", "comp"] and len(parts) >= 2:
                 matches = proj.find_connections(parts[1])
                 if matches:
-                    print(f"  Connections for {parts[1]}:")
+                    print(f"  {parts[1].upper()} connections:")
                     for c in matches:
                         print(f"    {c[0]} <-> {c[1]}")
                 else:
-                    print(f"  No connections found")
+                    print(f"  No connections found for {parts[1]}")
 
             # Net commands
             elif action == "name" and len(parts) >= 3:
