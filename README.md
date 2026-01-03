@@ -27,7 +27,7 @@ A powerful CLI tool for reverse engineering PCB connectivity. Record components,
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/pcb-reverse.git
+git clone https://github.com/Andwardo/pcb-reverse.git
 cd pcb-reverse
 
 # Run (no installation needed!)
@@ -115,7 +115,9 @@ The tool automatically formats values for readability:
 |---------|-------------|---------|
 | `<pin1> <pin2>` | Quick add connection | `R1-1 C2-2` |
 | `add <pin1> <pin2>` | Add connection | `add R1-1 C2-2` |
-| `del <pin1> <pin2>` | Delete connection | `del R1-1 C2-2` |
+| `del <pin>` | Delete ALL connections for a pin | `del Q13-2` |
+| `del <pin1> <pin2>` | Delete specific connection | `del R1-1 C2-2` |
+| `merge <from> <to>` | Merge duplicate pins | `merge Q14-4 Q14-TAB` |
 | `find <pin_or_ref>` | Find connections for pin/component | `find R01` |
 
 ### Net Commands
@@ -177,7 +179,7 @@ Each project creates three JSON files for persistent storage:
 ```
 $ python3 pcb_reverse.py power_supply
 ==================================================
-PCB Reverse Engineering Tool v2.1.0
+PCB Reverse Engineering Tool v2.2
 Project: power_supply
 ==================================================
 Loaded: 0 components, 0 connections
