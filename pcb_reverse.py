@@ -720,19 +720,31 @@ class PCBProject:
 
     def find_connections(self, pin_or_ref: str):
         """Find connections for a pin or component"""
-        pin_or_ref = pin_or_ref.upper().strip()
+        original = pin_or_ref.upper().strip()
 
-        if "-" in pin_or_ref or "." in pin_or_ref:
-            p = self.parse_pin(pin_or_ref)
+        if "-" in original or "." in original:
+            p = self.parse_pin(original)
             if p:
-                search = f"{p[0]}-{p[1]}"
+                search_terms = [self.format_pin(p)]
+                # Also try with -1 suffix for single-pin
+                if p[1] is None:
+                    search_terms.append(f"{p[0]}-1")
+            else:
+                search_terms = [original]
         else:
-            search = self.normalize_ref(pin_or_ref)
+            # Search both normalized and original forms
+            normalized = self.normalize_ref(original)
+            search_terms = [normalized, original]
+            if normalized != original:
+                search_terms.append(original)
 
         matches = []
         for conn in self.connections:
-            if search in conn[0] or search in conn[1]:
-                matches.append(conn)
+            for search in search_terms:
+                if search in conn[0] or search in conn[1]:
+                    if conn not in matches:
+                        matches.append(conn)
+                    break
 
         return sorted(matches)
 
