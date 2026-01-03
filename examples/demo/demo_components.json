@@ -1,0 +1,71 @@
+{
+  "project": "demo",
+  "timestamp": "2026-01-03T00:00:00",
+  "component_count": 8,
+  "components": {
+    "R01": {
+      "pins": 2,
+      "value": "10k",
+      "package": "0805",
+      "description": "Pull-up resistor",
+      "type": "resistor",
+      "measured": {"resistance": 10200}
+    },
+    "R02": {
+      "pins": 2,
+      "value": "4.7k",
+      "package": "0805",
+      "description": "Current limit",
+      "type": "resistor",
+      "measured": {"resistance": 4680}
+    },
+    "C01": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "Bypass capacitor",
+      "type": "capacitor",
+      "measured": {"capacitance": 9.8e-08}
+    },
+    "D01": {
+      "pins": 2,
+      "value": "1N4148",
+      "package": "SOD-123",
+      "description": "Signal diode",
+      "type": "diode",
+      "measured": {"vf": 0.62}
+    },
+    "Q01": {
+      "pins": 3,
+      "value": "2N3904",
+      "package": "SOT-23",
+      "description": "NPN transistor",
+      "type": "transistor",
+      "measured": {"hfe": 180, "transistor_type": "NPN"}
+    },
+    "U01": {
+      "pins": 8,
+      "value": "ATtiny85",
+      "package": "DIP-8",
+      "description": "Microcontroller",
+      "type": "ic",
+      "measured": {}
+    },
+    "GND": {
+      "pins": 1,
+      "value": "Ground",
+      "package": "-",
+      "description": "Ground net",
+      "type": "other",
+      "measured": {}
+    },
+    "VCC": {
+      "pins": 1,
+      "value": "+5V",
+      "package": "-",
+      "description": "5V power rail",
+      "type": "other",
+      "measured": {}
+    }
+  }
+}

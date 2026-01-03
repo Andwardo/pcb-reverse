@@ -233,7 +233,7 @@ Goodbye!
 
 See the `examples/` directory for sample projects:
 
-- `H-5/` - Dampp-Chaser H-5 humidistat reverse engineering (81 components, 156 connections)
+- `demo/` - Simple example with 8 components and 12 connections
 
 ## Tips and Best Practices
 
