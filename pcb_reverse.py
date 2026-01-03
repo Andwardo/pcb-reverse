@@ -13,7 +13,7 @@ Features:
 
 Usage: python3 pcb_reverse.py [project_name]
 
-Version: v2.1.0
+Version: v2.2.0
 License: MIT
 Author: R. Andrew Ballard (c) 2026
 """
@@ -543,12 +543,12 @@ class PCBProject:
     # ==================== CONNECTION MANAGEMENT ====================
 
     def parse_pin(self, pin_str: str):
-        """Parse pin string like 'Q12-2' into ('Q12', '2')"""
+        """Parse pin string like 'Q12-2' into ('Q12', '2') or just 'GND' for single-pin"""
         pin_str = pin_str.upper().strip()
 
-        # Handle special single-pin nets (GND, VCC, etc.)
+        # Handle special single-pin nets (GND, VCC, etc.) - return just the ref
         if pin_str in self.components and self.components[pin_str].get("pins") == 1:
-            return (pin_str, "1")
+            return (pin_str, None)  # None means single-pin, use ref directly
 
         # Handle formats: Q12-2, Q12.2
         for sep in ["-", ".", "_"]:
@@ -559,9 +559,26 @@ class PCBProject:
                     pin = parts[1].strip()
                     if pin.upper() == "TAB":
                         pin = "TAB"
+                    # Check if this is a single-pin component with -1 suffix
+                    if ref in self.components and self.components[ref].get("pins") == 1:
+                        return (ref, None)
                     return (ref, pin)
 
+        # Also check if bare ref is a single-pin component
+        normalized = self.normalize_ref(pin_str)
+        if normalized in self.components and self.components[normalized].get("pins") == 1:
+            return (normalized, None)
+
         return None
+
+    def format_pin(self, parsed_pin):
+        """Format parsed pin tuple back to string"""
+        if parsed_pin is None:
+            return None
+        ref, pin = parsed_pin
+        if pin is None:
+            return ref  # Single-pin component
+        return f"{ref}-{pin}"
 
     def add_connection(self, pin1: str, pin2: str):
         """Add a connection between two pins"""
@@ -578,8 +595,12 @@ class PCBProject:
                 print(f"  Auto-adding component {ref}")
                 self.add_component(ref)
 
+        # Format pins (handles single-pin components)
+        pin1_str = self.format_pin(p1)
+        pin2_str = self.format_pin(p2)
+
         # Normalize connection order
-        conn = tuple(sorted([f"{p1[0]}-{p1[1]}", f"{p2[0]}-{p2[1]}"]))
+        conn = tuple(sorted([pin1_str, pin2_str]))
 
         if conn in self.connections:
             print(f"  Already exists: {conn[0]} <-> {conn[1]}")
@@ -598,15 +619,104 @@ class PCBProject:
             print(f"  Invalid pin format")
             return False
 
-        conn = tuple(sorted([f"{p1[0]}-{p1[1]}", f"{p2[0]}-{p2[1]}"]))
+        # Format pins (handles single-pin components)
+        pin1_str = self.format_pin(p1)
+        pin2_str = self.format_pin(p2)
+        conn = tuple(sorted([pin1_str, pin2_str]))
 
         if conn in self.connections:
             self.connections.remove(conn)
             print(f"  Removed: {conn[0]} <-> {conn[1]}")
             return True
 
-        print(f"  Connection not found")
+        # Also try with -1 suffix for backwards compatibility
+        alt_variants = []
+        for p, ps in [(p1, pin1_str), (p2, pin2_str)]:
+            if p[1] is None:  # Single-pin component
+                alt_variants.append([ps, f"{p[0]}-1"])
+            else:
+                alt_variants.append([ps])
+
+        # Try all combinations
+        for v1 in alt_variants[0]:
+            for v2 in alt_variants[1]:
+                alt_conn = tuple(sorted([v1, v2]))
+                if alt_conn in self.connections:
+                    self.connections.remove(alt_conn)
+                    print(f"  Removed: {alt_conn[0]} <-> {alt_conn[1]}")
+                    return True
+
+        print(f"  Connection not found: {pin1_str} <-> {pin2_str}")
         return False
+
+    def merge_pins(self, from_pin: str, to_pin: str):
+        """Merge all connections from one pin to another (for duplicate pins like Q14-4 = Q14-TAB)"""
+        p_from = self.parse_pin(from_pin)
+        p_to = self.parse_pin(to_pin)
+
+        if not p_from or not p_to:
+            print(f"  Invalid pin format")
+            return False
+
+        from_str = self.format_pin(p_from)
+        to_str = self.format_pin(p_to)
+
+        # Find all connections involving from_pin
+        to_update = []
+        for conn in list(self.connections):
+            if from_str in conn or (p_from[1] is None and f"{p_from[0]}-1" in conn):
+                to_update.append(conn)
+
+        if not to_update:
+            print(f"  No connections found for {from_str}")
+            return False
+
+        # Update connections
+        count = 0
+        for conn in to_update:
+            self.connections.remove(conn)
+            # Replace from_pin with to_pin
+            new_conn = []
+            for pin in conn:
+                if pin == from_str or pin == f"{p_from[0]}-1":
+                    new_conn.append(to_str)
+                else:
+                    new_conn.append(pin)
+            new_conn = tuple(sorted(new_conn))
+
+            # Don't add self-connections
+            if new_conn[0] != new_conn[1]:
+                if new_conn not in self.connections:
+                    self.connections.add(new_conn)
+                    count += 1
+
+        print(f"  Merged {from_str} -> {to_str}: {count} connections updated")
+        return True
+
+    def delete_pin_connections(self, pin: str):
+        """Delete all connections for a specific pin"""
+        p = self.parse_pin(pin)
+        if not p:
+            print(f"  Invalid pin format: {pin}")
+            return False
+
+        pin_str = self.format_pin(p)
+
+        # Find all connections involving this pin
+        to_remove = []
+        for conn in self.connections:
+            if pin_str in conn or (p[1] is None and f"{p[0]}-1" in conn):
+                to_remove.append(conn)
+
+        if not to_remove:
+            print(f"  No connections found for {pin_str}")
+            return False
+
+        for conn in to_remove:
+            self.connections.remove(conn)
+
+        print(f"  Deleted {len(to_remove)} connections for {pin_str}")
+        return True
 
     def find_connections(self, pin_or_ref: str):
         """Find connections for a pin or component"""
@@ -878,7 +988,7 @@ class PCBProject:
 
 def print_help():
     print("""
-=== PCB Reverse Engineering Tool v2.1 ===
+=== PCB Reverse Engineering Tool v2.2 ===
 
 COMPONENT COMMANDS:
   cadd <ref> [pins] [value] [package]   Add component (pins auto-detected)
@@ -899,6 +1009,8 @@ CONNECTION COMMANDS:
   <pin1> <pin2>                         Quick add (e.g., R1-1 C2-2)
   add <pin1> <pin2>                     Add connection
   del <pin1> <pin2>                     Delete connection
+  merge <from_pin> <to_pin>             Merge pins (e.g., merge Q14-4 Q14-TAB)
+  pdel <pin>                            Delete all connections for a pin
   find <pin_or_ref>                     Find connections
 
 NET COMMANDS:
@@ -931,7 +1043,7 @@ def main():
     project_name = sys.argv[1] if len(sys.argv) > 1 else "pcb_project"
 
     print("=" * 50)
-    print(f"PCB Reverse Engineering Tool v2.1")
+    print(f"PCB Reverse Engineering Tool v2.2")
     print(f"Project: {project_name}")
     print("=" * 50)
 
@@ -995,6 +1107,12 @@ def main():
 
             elif action == "del" and len(parts) >= 3:
                 proj.delete_connection(parts[1], parts[2])
+
+            elif action == "merge" and len(parts) >= 3:
+                proj.merge_pins(parts[1], parts[2])
+
+            elif action == "pdel" and len(parts) >= 2:
+                proj.delete_pin_connections(parts[1])
 
             elif action == "find" and len(parts) >= 2:
                 matches = proj.find_connections(parts[1])

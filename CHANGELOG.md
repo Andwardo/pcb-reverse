@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-01-03
+
+### Added
+- `merge <from_pin> <to_pin>` - Merge duplicate pins (e.g., Q14-4 = Q14-TAB)
+- `pdel <pin>` - Delete all connections for a specific pin
+
+### Fixed
+- Delete connection now handles single-pin components (GND vs GND-1 format mismatch)
+- Improved pin parsing for backwards compatibility with imported data
+
 ## [2.1.0] - 2026-01-03
 
 ### Added
@@ -64,6 +74,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| 2.2.0 | 2026-01-03 | Pin merge/delete, delete connection fix |
 | 2.1.0 | 2026-01-03 | Measurement recording, smart value parsing |
 | 2.0.0 | 2026-01-03 | Complete rewrite, dynamic components, BOM export |
 | 1.0.0 | 2026-01-02 | Initial release |
