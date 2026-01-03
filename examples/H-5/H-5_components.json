@@ -1,0 +1,493 @@
+{
+  "project": "H-5",
+  "timestamp": "2026-01-03T05:30:30.754016",
+  "component_count": 81,
+  "components": {
+    "C01": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "Water filter"
+    },
+    "C02": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "Water amplifier"
+    },
+    "C03": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "LED water"
+    },
+    "C04": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "Water RC"
+    },
+    "C05": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "Pads amplifier"
+    },
+    "C06": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "Pads RC"
+    },
+    "C07": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "LED pads"
+    },
+    "C08": {
+      "pins": 2,
+      "value": "100nF",
+      "package": "0805",
+      "description": "Pads filter"
+    },
+    "C09": {
+      "pins": 2,
+      "value": "1uF",
+      "package": "0805",
+      "description": "Flasher timing (CRITICAL)"
+    },
+    "C10": {
+      "pins": 2,
+      "value": "470uF 16V",
+      "package": "Radial",
+      "description": "Main filter"
+    },
+    "D01": {
+      "pins": 3,
+      "value": "BAV70",
+      "package": "SOT-23",
+      "description": "LED dual diode"
+    },
+    "D02": {
+      "pins": 3,
+      "value": "BAV70",
+      "package": "SOT-23",
+      "description": "Water dual diode"
+    },
+    "D03": {
+      "pins": 3,
+      "value": "DNP",
+      "package": "SOT-23",
+      "description": "Not populated"
+    },
+    "D04": {
+      "pins": 3,
+      "value": "BAV70",
+      "package": "SOT-23",
+      "description": "Pads dual diode"
+    },
+    "D05": {
+      "pins": 3,
+      "value": "BAV70",
+      "package": "SOT-23",
+      "description": "LED pads dual diode"
+    },
+    "D06": {
+      "pins": 3,
+      "value": "DNP",
+      "package": "SOT-23",
+      "description": "Not populated"
+    },
+    "D07": {
+      "pins": 3,
+      "value": "BAV70",
+      "package": "SOT-23",
+      "description": "Flasher clamp"
+    },
+    "D08": {
+      "pins": 3,
+      "value": "BAV70",
+      "package": "SOT-23",
+      "description": "Power clamp"
+    },
+    "Q01": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "LED driver"
+    },
+    "Q02": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "LED driver"
+    },
+    "Q03": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Water amplifier"
+    },
+    "Q04": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Water comparator"
+    },
+    "Q05": {
+      "pins": 3,
+      "value": "BC847A",
+      "package": "SOT-23",
+      "description": "Water feedback"
+    },
+    "Q06": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Pads amplifier"
+    },
+    "Q07": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Pads amplifier"
+    },
+    "Q08": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Pads comparator"
+    },
+    "Q09": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Pads comparator"
+    },
+    "Q10": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Pads output"
+    },
+    "Q11": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Flasher oscillator"
+    },
+    "Q12": {
+      "pins": 3,
+      "value": "2N7002",
+      "package": "SOT-23",
+      "description": "Flasher oscillator"
+    },
+    "Q13": {
+      "pins": 6,
+      "value": "MOC3063",
+      "package": "DIP-6",
+      "description": "Optocoupler"
+    },
+    "Q14": {
+      "pins": 4,
+      "value": "AMS1117-5.0",
+      "package": "SOT-223",
+      "description": "5V LDO regulator"
+    },
+    "R01": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Water sense divider"
+    },
+    "R02": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Water sense divider"
+    },
+    "R03": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Water sense"
+    },
+    "R04": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "LED bias"
+    },
+    "R05": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "LED bias"
+    },
+    "R06": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Water sense"
+    },
+    "R07": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Q3/Q4 base bias"
+    },
+    "R08": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Q4 bias"
+    },
+    "R09": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Q4 bias"
+    },
+    "R10": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Water comparator"
+    },
+    "R11": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Water comparator"
+    },
+    "R12": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Water RC"
+    },
+    "R13": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "LED water"
+    },
+    "R14": {
+      "pins": 2,
+      "value": "47k",
+      "package": "0805",
+      "description": "Water sense input"
+    },
+    "R15": {
+      "pins": 2,
+      "value": "3.3k",
+      "package": "0805",
+      "description": "LED drive"
+    },
+    "R16": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads sense"
+    },
+    "R17": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads amplifier"
+    },
+    "R18": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads amplifier"
+    },
+    "R19": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads bias"
+    },
+    "R20": {
+      "pins": 2,
+      "value": "33R",
+      "package": "0805",
+      "description": "Pads RC"
+    },
+    "R21": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads divider"
+    },
+    "R22": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads comparator"
+    },
+    "R23": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads divider"
+    },
+    "R24": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads divider"
+    },
+    "R25": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads divider"
+    },
+    "R26": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads comparator"
+    },
+    "R27": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "LED pads driver"
+    },
+    "R28": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "LED pads"
+    },
+    "R29": {
+      "pins": 2,
+      "value": "TBD",
+      "package": "0805",
+      "description": "Pads filter"
+    },
+    "R30": {
+      "pins": 2,
+      "value": "10k",
+      "package": "0805",
+      "description": "Flasher"
+    },
+    "R31": {
+      "pins": 2,
+      "value": "330k",
+      "package": "0805",
+      "description": "Flasher timing"
+    },
+    "R32": {
+      "pins": 2,
+      "value": "470k",
+      "package": "0805",
+      "description": "Flasher timing"
+    },
+    "R33": {
+      "pins": 2,
+      "value": "220k",
+      "package": "0805",
+      "description": "Flasher timing"
+    },
+    "R34": {
+      "pins": 2,
+      "value": "220R",
+      "package": "0805",
+      "description": "Flasher output"
+    },
+    "R35": {
+      "pins": 2,
+      "value": "1R",
+      "package": "0805",
+      "description": "Power clamp"
+    },
+    "R36": {
+      "pins": 2,
+      "value": "220k",
+      "package": "0805",
+      "description": "Pads input"
+    },
+    "T01": {
+      "pins": 10,
+      "value": "120V:9V",
+      "package": "EI Potted",
+      "description": "Power transformer"
+    },
+    "J01": {
+      "pins": 6,
+      "value": "6P2C",
+      "package": "RJ12",
+      "description": "Water sensor jack"
+    },
+    "J02": {
+      "pins": 3,
+      "value": "3.5mm",
+      "package": "AudioJack3",
+      "description": "Pads sensor jack"
+    },
+    "J04": {
+      "pins": 6,
+      "value": "6P4C",
+      "package": "RJ12",
+      "description": "LED panel jack"
+    },
+    "HS01": {
+      "pins": 3,
+      "value": "J10-7104-300",
+      "package": "Humidistat",
+      "description": "Mechanical humidistat switch"
+    },
+    "HU01": {
+      "pins": 2,
+      "value": "120VAC",
+      "package": "Outlet",
+      "description": "Humidifier outlet"
+    },
+    "DH01": {
+      "pins": 2,
+      "value": "120VAC",
+      "package": "Outlet",
+      "description": "Dehumidifier outlet"
+    },
+    "SP1": {
+      "pins": 1,
+      "value": "Spade",
+      "package": "Lug",
+      "description": "AC Hot terminal"
+    },
+    "SP2": {
+      "pins": 1,
+      "value": "Spade",
+      "package": "Lug",
+      "description": "AC Neutral terminal"
+    },
+    "SP3": {
+      "pins": 1,
+      "value": "Spade",
+      "package": "Lug",
+      "description": "Humidifier Neutral terminal"
+    },
+    "GND": {
+      "pins": 1,
+      "value": "Ground",
+      "package": "-",
+      "description": "Ground net"
+    },
+    "VCC": {
+      "pins": 1,
+      "value": "+5V",
+      "package": "-",
+      "description": "5V power rail"
+    },
+    "NC": {
+      "pins": 1,
+      "value": "NC",
+      "package": "-",
+      "description": "No connect"
+    }
+  }
+}
