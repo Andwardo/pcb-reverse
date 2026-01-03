@@ -13,7 +13,7 @@ Features:
 
 Usage: python3 pcb_reverse.py [project_name]
 
-Version: v2.2.0
+Version: v2.2.1
 License: MIT
 Author: R. Andrew Ballard (c) 2026
 """
@@ -1008,9 +1008,9 @@ MEASUREMENT COMMANDS:
 CONNECTION COMMANDS:
   <pin1> <pin2>                         Quick add (e.g., R1-1 C2-2)
   add <pin1> <pin2>                     Add connection
-  del <pin1> <pin2>                     Delete connection
+  del <pin>                             Delete ALL connections for a pin
+  del <pin1> <pin2>                     Delete specific connection
   merge <from_pin> <to_pin>             Merge pins (e.g., merge Q14-4 Q14-TAB)
-  pdel <pin>                            Delete all connections for a pin
   find <pin_or_ref>                     Find connections
 
 NET COMMANDS:
@@ -1105,13 +1105,19 @@ def main():
             elif action == "add" and len(parts) >= 3:
                 proj.add_connection(parts[1], parts[2])
 
-            elif action == "del" and len(parts) >= 3:
-                proj.delete_connection(parts[1], parts[2])
+            elif action == "del" and len(parts) >= 2:
+                if len(parts) >= 3:
+                    # del <pin1> <pin2> - delete specific connection
+                    proj.delete_connection(parts[1], parts[2])
+                else:
+                    # del <pin> - delete all connections for pin
+                    proj.delete_pin_connections(parts[1])
 
             elif action == "merge" and len(parts) >= 3:
                 proj.merge_pins(parts[1], parts[2])
 
             elif action == "pdel" and len(parts) >= 2:
+                # Alias for del <pin>
                 proj.delete_pin_connections(parts[1])
 
             elif action == "find" and len(parts) >= 2:
