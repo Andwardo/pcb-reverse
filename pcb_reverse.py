@@ -494,7 +494,10 @@ class PCBProject:
             else:
                 measured_str = ""
 
-            print(f"  {ref}: {value_str} ({info['pins']} pins, {info['package']}){measured_str}")
+            # Add predicted flag if present
+            predicted_str = " [PREDICTED]" if info.get('predicted') else ""
+
+            print(f"  {ref}: {value_str} ({info['pins']} pins, {info['package']}){measured_str}{predicted_str}")
 
             if info.get('description'):
                 print(f"       {info['description']}")
@@ -508,10 +511,12 @@ class PCBProject:
 
         info = self.components[ref]
         print(f"\n  === {ref} ===")
-        print(f"  Type: {info.get('type', 'unknown')}")
+        print(f"  Type: {info.get('Type', info.get('type', 'unknown'))}")
         print(f"  Value: {info.get('value', '?')}")
         print(f"  Package: {info.get('package', '?')}")
         print(f"  Pins: {info.get('pins', '?')}")
+        if info.get('predicted'):
+            print(f"  Status: PREDICTED (not yet measured)")
 
         if info.get('description'):
             print(f"  Description: {info['description']}")
