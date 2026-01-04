@@ -1011,7 +1011,7 @@ class PCBProject:
 
 def print_help():
     print("""
-=== PCB Reverse Engineering Tool v2.2 ===
+=== PCB Reverse Engineering Tool v2.2.2 ===
 
 COMPONENT COMMANDS:
   cadd <ref> [pins] [value] [package]   Add component (pins auto-detected)
@@ -1066,9 +1066,11 @@ def main():
     project_name = sys.argv[1] if len(sys.argv) > 1 else "pcb_project"
 
     print("=" * 50)
-    print(f"PCB Reverse Engineering Tool v2.2")
-    print(f"Project: {project_name}")
+    print(f"PCB Reverse Engineering Tool v2.2.2")
+    print(f"By R. Andrew Ballard (@Andwardo)")
+    print(f"(c) 2026 Blue Sky Fusion, Inc.")
     print("=" * 50)
+    print(f"Project: {project_name}")
 
     proj = PCBProject(project_name=project_name)
     print_help()
