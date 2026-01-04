@@ -13,9 +13,11 @@ Features:
 
 Usage: python3 pcb_reverse.py [project_name]
 
-Version: v2.2.1
+Version: v2.2.2
 License: MIT
-Author: R. Andrew Ballard, Blue Sky Fusion, Inc. (c) 2026
+Author: R. Andrew Ballard
+GitHub: https://github.com/Andwardo
+Copyright (c) 2026 Blue Sky Fusion, Inc.
 """
 
 import json
