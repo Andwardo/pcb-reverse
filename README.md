@@ -179,9 +179,11 @@ Each project creates three JSON files for persistent storage:
 ```
 $ python3 pcb_reverse.py power_supply
 ==================================================
-PCB Reverse Engineering Tool v2.2
-Project: power_supply
+PCB Reverse Engineering Tool v2.2.2
+By R. Andrew Ballard (@Andwardo)
+(c) 2026 Blue Sky Fusion, Inc.
 ==================================================
+Project: power_supply
 Loaded: 0 components, 0 connections
 
 > cadd C01 2 100uF Radial "Main filter"
