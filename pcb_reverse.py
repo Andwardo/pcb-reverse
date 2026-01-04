@@ -327,6 +327,10 @@ class PCBProject:
         if "measured" not in self.components[ref]:
             self.components[ref]["measured"] = {}
 
+        # Remove predicted flag when measurement is recorded
+        if "predicted" in self.components[ref]:
+            del self.components[ref]["predicted"]
+
         # Parse and format based on measurement type
         if measurement_type in ['r', 'resistance', 'ohms']:
             ohms = parse_resistance(value)
